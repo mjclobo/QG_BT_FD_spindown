@@ -8,3 +8,5 @@ The model uses an optimized finite difference code and can be run at reasonable 
 
 
 Please see [the documentation](https://qg-bt-fd-spindown.readthedocs.io/en/latest/) for more info.
+
+![NP94_spindown_ex](https://github.com/user-attachments/assets/53473d7a-2626-4b04-8887-50849837a0f0)
