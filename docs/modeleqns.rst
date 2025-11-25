@@ -36,12 +36,12 @@ The time-dependent topographic forcing is defined as
    \psi_{f} (x,y,t)
    =
    \psi_{0} \mathrm{sin} ( 2 \pi t / \tau ) \times
-   \mathrm{exp} \left [
-   - \left {
+   \mathrm{exp} [
+   - {
    \frac{(x-x_{0})^2}{2 \, \delta x^2}
    +  \frac{(y-y_{0})^2}{2 \, \delta y^2}
-   \right }
-   \right ]
+   }
+   ]
    \end{equation}
 
 The velocity streamfunction is defined via
