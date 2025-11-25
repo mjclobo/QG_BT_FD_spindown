@@ -18,9 +18,12 @@ The governing equations for the present two-layer QG model are
    \end{equation}
 
 where the potential vorticity is
+
 .. math::
 
+   \begin{equation}
     q = f + \nabla^2 \psi - \lambda^{-2} \psi + f \, h / H
+    \end{equation}
 
 and we use a second-order
 hyperviscosity with the coefficient :math:`\nu` with dimensions of :math:`\mathrm{L}^{4} \mathrm{T}`.
@@ -29,6 +32,7 @@ The time-dependent topographic forcing is defined as
 
 .. math::
 
+   \begin{equation}
    \psi_{f} (x,y,t)
    =
    \psi_{0} \mathrm{sin} ( 2 \pi t / \tau ) \times
@@ -38,11 +42,15 @@ The time-dependent topographic forcing is defined as
    +  \frac{(y-y_{0})^2}{2 \, \delta y^2}
    \right }
    \right ]
+   \end{equation}
 
 The velocity streamfunction is defined via
+
 .. math::
 
+   \begin{equation}
     (\nabla^2 - \lambda^{-2}) \psi_{v} = q(x, y, t) - f
+    \end{equation}
 
 Note that the PV is advected by the total streamfunction,
 :math"`\psi_{f} + \psi_{v}`.
