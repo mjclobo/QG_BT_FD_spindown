@@ -1,4 +1,4 @@
-This is a doubly-periodic barotorpic QG model written in the Julia programming language to replicate
+This is a doubly-periodic barotropic QG model written in the Julia programming language to replicate
 the results of Nakamura and Plumb (1994).
 The basic picture is the spindown of a barotropic vortex with radial geometry and wavemaker forcing,
 such that wavebreaking analogous to that in the jet stream of Earth's atmosphere occurs.
