@@ -56,7 +56,7 @@ U0 = 0.
 cfl = 0.5      # nominal CFL
 
 dt = cfl * dx / 30 # target is 30 m/s jet maximum; 0.005
-nt = 15000                              # number of time steps
+nt = 1500                              # number of time steps
 
 timestep_method = "RK4" # "RK4_int"     # options are: RK4, RK4_int
 
@@ -85,7 +85,7 @@ save_last = true
 
 # this plots panels at fig_path; the plot function (defined in output_fcns.jl) can be modified to be whatever you want to see
 fig_path = "/home/matt/Desktop/research/QG/QG_channel_output/anim/BT_model/"
-plot_every = round(Int,nt/200)      # period of plot output frequency
+plot_every = round(Int,nt/50)      # period of plot output frequency
 
 
 ################################################################################
@@ -111,7 +111,7 @@ q0 = f0 .* ones(Nx, Ny)
 for i in range(1,Nx)
     for j in range(1, Ny)
         if sqrt(x[i]^2 + y[j]^2) < radius
-            q0[i,j] += 0.4192 * f0 # 1.0
+            q0[i,j] += 1.4192 * f0 # 1.0
         end
     end
 end
@@ -143,27 +143,35 @@ function wavemaker(ψ0, x, y, x0, y0, δx, δy, t, τ)
     return @. ψ0 * sin(2 * pi * t / τ) * exp(-((x - x0)^2 / (2 * δx^2) + (y' - y0)^2 / (2 * δy^2)))
 end
 
+function stationary_topo(η0, x, y, x0, y0, δx, δy)
+    return @. η0 * exp(-((x - x0)^2 / (2 * δx^2) + (y' - y0)^2 / (2 * δy^2)))
+end
+
 # parameters from Nakamura and Plumb 1994, p. 2033
 x0 = -radius
 y0 = 0
 
-δx = 0.3 * radius
-δy = 0.2 * radius
+δx = 0.3 * radius/2
+δy = 0.2 * radius/2
 
 τ = 5.73 * 24 * 3600 # 20.0
 
 ψ_init, ψh_init = def_psi(qh_init)
 
-ψ0 = 0.2 * maximum(ψ_init)
+ψ0 = 0.0 # 0.5 * maximum(ψ_init)
 
 t=0
+
+
+# stationary topo params
+η0 = 0.15 * H
 
 ################################################################################
 # Run model from initial conditions
 ################################################################################
 params = init_params_BT_FD(Nx, Ny, dx, dy, r, f0, L_re_FD_inv, L_re_FD, Lap_op; backend=CPU())   # use CUDABackend() in place of CPU() for GPU
 
-run_BT_model_FD_KA(q0, params; nt=nt, dt, output_every=500)
+run_BT_model_FD_KA(q0, params; nt=nt, dt, output_every=50)
 
 
 # PyPlot.pygui(true)

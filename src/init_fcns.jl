@@ -260,10 +260,12 @@ function run_BT_model_FD_KA(q, params; nt=10_000, dt, output_every=500)
     ψ_sum = similar(ψ_v)
     q_sum = similar(q)
 
+    η = stationary_topo(η0, x, y, -x0, y0, δx, δy)
+
     lap_q_vec = zeros(Nx*Ny)
     lap2_q_vec = zeros(Nx*Ny)
 
-    workspace = (ψ_v, ψ_v_vec, Q, Q_vec, ψ_f, ψ_f_vec, q_f, ψ_sum, q_sum, lap_q_vec, lap2_q_vec)
+    workspace = (ψ_v, ψ_v_vec, Q, Q_vec, ψ_f, ψ_f_vec, q_f, ψ_sum, q_sum, lap_q_vec, lap2_q_vec, η)
 
     # RK4 storage
     k1 = similar(q)

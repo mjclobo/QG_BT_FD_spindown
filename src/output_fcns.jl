@@ -42,7 +42,7 @@ function save_BT_anim_panel(fig_path, ell, q, ψ)
     # ax.set_title("ψ")
 
     # lim = maximum(abs.(q .- mean(q, dims=1)))
-    pc = ax.pcolormesh(x ./ Ld, y ./ Ld, (q./f0)', cmap=PyPlot.cm.RdYlBu , vmin=0.975, vmax=1.45)
+    pc = ax.pcolormesh(x ./ Ld, y ./ Ld, (q./f0)', cmap=PyPlot.cm.RdYlBu, vmin=0.75, vmax=2.5)
 
     ax.set_title(L"q / f_0")
 

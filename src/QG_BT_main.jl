@@ -531,7 +531,7 @@ function rhs_BT_FD!(
     ψ_v, ψ_v_vec,
     Q, Q_vec,
     ψ_f, ψ_f_vec, q_f, ψ_sum, q_sum,
-    lap_q_vec, lap2_q_vec,
+    lap_q_vec, lap2_q_vec, η,
     params::BTParamsOpt, t)
 
     @unpack Nx, Ny, dx, dy, r, f0, L_fac, L_op, ip, im, jp, jm, backend = params
@@ -555,10 +555,10 @@ function rhs_BT_FD!(
     q_f_vec = -(L_op * ψ_f_vec)
     @views q_f .= reshape(q_f_vec, Nx, Ny)
 
-    #### 5. Arakawa Jacobian J(ψ_v + ψ_f, q + q_f)
+    #### 5. Arakawa Jacobian J(ψ_v + ψ_f, q + q_f + q_eta)
     # Inputs must be pre-summed
     ψ_sum .= ψ_v .+ ψ_f
-    q_sum .= q    .+ q_f    
+    q_sum .= q    .+ q_f .+ ((f0/H) * η)   
 
     k = arakawa_kernel!(params.backend)
 
@@ -585,6 +585,10 @@ function rhs_BT_FD!(
 
     # 2. Compute Laplacian(Laplacian(q)) = ∇⁴ q
     lap2_q_vec .= params.Lap_op * lap_q_vec
+
+    # # increasing order of hyperviscosity
+    # if you use this, you must change the sign of hyperviscosity, below
+    # lap2_q_vec .= params.Lap_op * lap2_q_vec
 
     # 3. Add hyperviscous tendency
     dqdt_vec = reshape(dqdt, :)
