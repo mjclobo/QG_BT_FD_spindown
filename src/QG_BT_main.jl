@@ -538,7 +538,7 @@ function rhs_BT_FD!(
 
     #### 1. Build potential vorticity anomaly Q = q - f0, zero mean
     @tturbo for j in 1:Ny, i in 1:Nx
-        Q[i,j] = q[i,j] + ((f0/H) * η[i,j])    # - f0 - ((f0/H) * η[i,j])   
+        Q[i,j] = q[i,j] - ((f0/H) * η[i,j])    # - f0 - ((f0/H) * η[i,j])   
     end
     Q .-= sum(Q) / (Nx*Ny)
 
@@ -558,7 +558,7 @@ function rhs_BT_FD!(
     #### 5. Arakawa Jacobian J(ψ_v + ψ_f, q + q_f + q_eta ? )
     # Inputs must be pre-summed
     ψ_sum .= ψ_v .+ ψ_f
-    q_sum .= q .+   q_f .- ((f0/H) * η)
+    q_sum .= q .+   q_f .+ ((f0/H) * η)
 
     k = arakawa_kernel!(params.backend)
 
