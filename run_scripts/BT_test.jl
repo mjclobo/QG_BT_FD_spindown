@@ -151,7 +151,7 @@ end
 x0 = -radius
 y0 = 0
 
-δx = radius/2
+δx = radius/4
 δy = radius/8
 
 τ = 5.73 * 24 * 3600 # 20.0
@@ -164,7 +164,7 @@ t=0
 
 
 # stationary topo params
-η0 = 0.15 * H
+η0 = 0.1 * H
 
 ################################################################################
 # Run model from initial conditions
