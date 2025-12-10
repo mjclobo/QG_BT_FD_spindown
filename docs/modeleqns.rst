@@ -6,7 +6,7 @@ Here we provide that governing equations of a barotropic QG model on a doubly-re
 
 Governing equations
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-The governing equations for the present two-layer QG model are
+The governing equations for the present barotropic QG model are
 
 .. math::
 
@@ -27,6 +27,7 @@ where the potential vorticity is
 
 and we use a second-order
 hyperviscosity with the coefficient :math:`\nu` with dimensions of :math:`\mathrm{L}^{4} \mathrm{T}`.
+
 
 The time-dependent topographic forcing is defined as
 
