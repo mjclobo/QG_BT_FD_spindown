@@ -53,7 +53,7 @@ U0 = 0.
 # Timestepping params
 ################################################################################
 
-cfl = 0.5      # nominal CFL
+cfl = 0.5     # nominal CFL
 
 dt = cfl * dx / 30 # target is 30 m/s jet maximum; 0.005
 nt = 1500                              # number of time steps
@@ -151,8 +151,8 @@ end
 x0 = -radius
 y0 = 0
 
-δx = 0.3 * radius/2
-δy = 0.2 * radius/2
+δx = radius/2
+δy = radius/8
 
 τ = 5.73 * 24 * 3600 # 20.0
 
